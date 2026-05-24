@@ -211,10 +211,12 @@ python analyze_ipl.py
 > Generates 22 charts in ~23 seconds
 
 ### View the Dashboard
+🔗 **Live:** [https://nikunj532.github.io/ipl-crunch-26/](https://nikunj532.github.io/ipl-crunch-26/)
+
+Or run locally:
 ```bash
 python -m http.server 8000
 ```
-Open [http://localhost:8000](http://localhost:8000) in your browser.
 
 ---
 
