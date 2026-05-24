@@ -1,0 +1,29 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+venv/
+.env/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+Thumbs.db
+.DS_Store
+
+# Temp scripts
+find_banner.py
+extract_unstop.py
+crop_cover.py
+combine_cover.py
+generate_clean_cover.py
+clean_light_cover.png
+final_cover_image.png
+final_submission_cover.png
+
+# Large data files (keep CSV out of repo if too big)
+# deliveries.csv

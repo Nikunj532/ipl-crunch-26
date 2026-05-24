@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="IPL Crunch '26 — A comprehensive data analytics deep-dive into IPL cricket, uncovering patterns in toss impact, phase-wise performance, top performers, and hidden insights.">
+  <title>IPL Crunch '26 — Data Analytics Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- HERO -->
+  <section class="hero">
+    <span class="hero-badge">🏏 IPL CRUNCH '26 — Data Analytics Challenge</span>
+    <h1>Decoding the <span class="gradient-text">IPL</span> with Data</h1>
+    <p>A deep analytical dive into ball-by-ball IPL data across 1,200+ matches and 289,000+ deliveries — answering cricket's biggest questions with numbers.</p>
+  </section>
+
+  <!-- STATS ROW -->
+  <div class="stats-row">
+    <div class="stat-card">
+      <div class="stat-value" data-target="1218">0</div>
+      <div class="stat-label">Matches Analyzed</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value" data-target="289673">0</div>
+      <div class="stat-label">Ball-by-Ball Records</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value" data-target="15">0</div>
+      <div class="stat-label">Teams Tracked</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value" data-target="22">0</div>
+      <div class="stat-label">Charts Generated</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value" data-target="18">0</div>
+      <div class="stat-label">Seasons Covered</div>
+    </div>
+  </div>
+
+  <!-- NAV TABS -->
+  <nav class="nav-tabs" id="navTabs">
+    <button class="nav-tab active" data-tab="toss">🪙 Toss Impact</button>
+    <button class="nav-tab" data-tab="phases">⚡ Phase Analysis</button>
+    <button class="nav-tab" data-tab="performers">🏆 Top Performers</button>
+    <button class="nav-tab" data-tab="patterns">🔍 Hidden Patterns</button>
+    <button class="nav-tab" data-tab="surprise">💡 Key Insight</button>
+  </nav>
+
+  <!-- SECTION: TOSS IMPACT -->
+  <section class="section active" id="sec-toss">
+    <div class="section-header">
+      <h2>🪙 Does Winning the Toss Win You the Match?</h2>
+      <p>One of cricket's oldest debates — we put it to the test with statistical rigor across 1,200+ IPL matches.</p>
+    </div>
+
+    <div class="insight-card">
+      <h3>📊 Overall Toss Impact</h3>
+      <p>Conventional wisdom says the toss is a massive advantage. But the data tells a different story. Across all IPL matches, the toss winner's match win rate hovers close to 50% — suggesting <strong>the toss is NOT a statistically significant predictor of victory</strong>. The chi-squared test confirms this with a p-value that challenges the toss myth.</p>
+      <img class="chart-img" src="charts/toss_impact_overall.png" alt="Toss Impact Overall" loading="lazy">
+    </div>
+
+    <div class="chart-grid">
+      <div class="chart-card">
+        <h4>Season-wise Toss Advantage</h4>
+        <p class="chart-desc">How toss impact varies year over year — some seasons show stronger toss effects than others.</p>
+        <img src="charts/toss_by_season.png" alt="Toss by Season" loading="lazy">
+      </div>
+      <div class="chart-card">
+        <h4>Bat vs Field Decision Trend</h4>
+        <p class="chart-desc">The dramatic shift from "bat first" to "field first" over the years — IPL captains have clearly adapted.</p>
+        <img src="charts/toss_decision_trend.png" alt="Toss Decision Trend" loading="lazy">
+      </div>
+    </div>
+
+    <div class="chart-grid" style="margin-top:1.5rem">
+      <div class="chart-card">
+        <h4>Toss Impact by Venue</h4>
+        <p class="chart-desc">Heatmap showing where the toss matters most — some venues heavily favor certain decisions.</p>
+        <img src="charts/toss_venue_heatmap.png" alt="Toss Venue Heatmap" loading="lazy">
+      </div>
+      <div class="chart-card">
+        <h4>Toss Win → Match Win by Team</h4>
+        <p class="chart-desc">Which franchises capitalize best on winning the toss?</p>
+        <img src="charts/toss_by_team.png" alt="Toss by Team" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION: PHASE ANALYSIS -->
+  <section class="section" id="sec-phases">
+    <div class="section-header">
+      <h2>⚡ Which Phase Decides Victory?</h2>
+      <p>Powerplay (overs 1–6), Middle (7–16), or Death (17–20) — we use run rates, wicket rates, and logistic regression to find the most impactful phase.</p>
+    </div>
+
+    <div class="insight-card">
+      <h3>📈 Run Rate: Winners vs Losers</h3>
+      <p>Winning teams consistently outperform losing teams across all three phases, but the <strong>gap is most dramatic in the Death overs</strong>, where winning teams accelerate while losing teams collapse. The Death overs show the largest run-rate differential between winners and losers.</p>
+      <img class="chart-img" src="charts/phase_runrate_comparison.png" alt="Phase Run Rate Comparison" loading="lazy">
+    </div>
+
+    <div class="chart-grid">
+      <div class="chart-card">
+        <h4>Phase Contribution to Total Score</h4>
+        <p class="chart-desc">What percentage of runs come from each phase — the Middle overs contribute the most by volume.</p>
+        <img src="charts/phase_contribution.png" alt="Phase Contribution" loading="lazy">
+      </div>
+      <div class="chart-card">
+        <h4>Bowling Wicket Rate by Phase</h4>
+        <p class="chart-desc">Winning teams' bowlers take more wickets per ball, especially in the Powerplay.</p>
+        <img src="charts/phase_wickets.png" alt="Phase Wickets" loading="lazy">
+      </div>
+    </div>
+
+    <div class="insight-card" style="margin-top:1.5rem">
+      <h3>🧠 Feature Importance: Logistic Regression</h3>
+      <p>We trained a logistic regression model using first-innings phase-wise runs to predict match outcomes. The model reveals which phase's performance is the strongest predictor of victory. This is the analytical equivalent of asking: <em>"If you could only dominate one phase, which one should it be?"</em></p>
+      <img class="chart-img" src="charts/phase_importance.png" alt="Phase Importance" loading="lazy">
+    </div>
+  </section>
+
+  <!-- SECTION: TOP PERFORMERS -->
+  <section class="section" id="sec-performers">
+    <div class="section-header">
+      <h2>🏆 IPL's Greatest Performers</h2>
+      <p>From run machines to wicket magnets — the all-time leaderboards across batting, bowling, and impact metrics.</p>
+    </div>
+
+    <div class="chart-grid">
+      <div class="chart-card">
+        <h4>🏏 Top 15 Run Scorers</h4>
+        <p class="chart-desc">All-time IPL runs with strike rate and average annotations.</p>
+        <img src="charts/top_batters_runs.png" alt="Top Batters Runs" loading="lazy">
+      </div>
+      <div class="chart-card">
+        <h4>⚡ Highest Strike Rates (500+ runs)</h4>
+        <p class="chart-desc">The most explosive batters who've scored enough to prove it's not a fluke.</p>
+        <img src="charts/top_batters_sr.png" alt="Top Batters SR" loading="lazy">
+      </div>
+    </div>
+
+    <div class="chart-grid" style="margin-top:1.5rem">
+      <div class="chart-card">
+        <h4>🎯 Top 15 Wicket Takers</h4>
+        <p class="chart-desc">All-time leading wicket-takers with economy and average stats.</p>
+        <img src="charts/top_bowlers_wickets.png" alt="Top Bowlers Wickets" loading="lazy">
+      </div>
+      <div class="chart-card">
+        <h4>💰 Best Economy Rates (30+ innings)</h4>
+        <p class="chart-desc">The most miserly bowlers — consistently keeping run flow in check.</p>
+        <img src="charts/top_bowlers_economy.png" alt="Top Bowlers Economy" loading="lazy">
+      </div>
+    </div>
+
+    <div class="chart-grid" style="margin-top:1.5rem">
+      <div class="chart-card">
+        <h4>💥 Most Sixes in IPL History</h4>
+        <p class="chart-desc">The biggest hitters — who's cleared the ropes the most?</p>
+        <img src="charts/top_sixes.png" alt="Top Sixes" loading="lazy">
+      </div>
+      <div class="chart-card">
+        <h4>🌟 Most Player of the Match Awards</h4>
+        <p class="chart-desc">The ultimate impact players who consistently steal the show.</p>
+        <img src="charts/mvp_awards.png" alt="MVP Awards" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION: HIDDEN PATTERNS -->
+  <section class="section" id="sec-patterns">
+    <div class="section-header">
+      <h2>🔍 Hidden Patterns & Deeper Insights</h2>
+      <p>Beyond the obvious stats — emerging trends, scoring evolution, phase specialists, and strategic insights buried in the data.</p>
+    </div>
+
+    <div class="insight-card">
+      <h3>📉 Bat First vs Chase: The Great Shift</h3>
+      <p>One of the most dramatic trends in IPL history — the steady shift towards chasing. In early seasons, batting first was preferred. Today, <strong>chasing teams win more often</strong>, driven by better dew management, improved batting depth, and T20 scoring evolution. This chart maps the entire journey.</p>
+      <img class="chart-img" src="charts/batting_first_trend.png" alt="Batting First Trend" loading="lazy">
+    </div>
+
+    <div class="chart-grid">
+      <div class="chart-card">
+        <h4>📊 Team Win Percentage (All-time)</h4>
+        <p class="chart-desc">Which franchises have the best historical win rates? Team color-coded for clarity.</p>
+        <img src="charts/team_win_pct.png" alt="Team Win %" loading="lazy">
+      </div>
+      <div class="chart-card">
+        <h4>🎯 Close Finishes by Season</h4>
+        <p class="chart-desc">Are IPL matches getting closer? Tracking nail-biters (≤10 runs or ≤2 wickets margin).</p>
+        <img src="charts/close_finishes.png" alt="Close Finishes" loading="lazy">
+      </div>
+    </div>
+
+    <div class="chart-grid" style="margin-top:1.5rem">
+      <div class="chart-card">
+        <h4>💥 Boundary Dependency: Winners vs Losers</h4>
+        <p class="chart-desc">Do winners rely more on boundaries? The answer might surprise you.</p>
+        <img src="charts/boundary_analysis.png" alt="Boundary Analysis" loading="lazy">
+      </div>
+      <div class="chart-card">
+        <h4>📈 Average Innings Score Over Seasons</h4>
+        <p class="chart-desc">Tracking IPL's scoring inflation — how much higher are scores getting?</p>
+        <img src="charts/scoring_trend.png" alt="Scoring Trend" loading="lazy">
+      </div>
+    </div>
+
+    <div class="chart-grid" style="margin-top:1.5rem">
+      <div class="chart-card">
+        <h4>🔥 Death Over Specialists</h4>
+        <p class="chart-desc">Batters with the highest strike rates in overs 16–20 — the finishers.</p>
+        <img src="charts/death_specialists.png" alt="Death Specialists" loading="lazy">
+      </div>
+      <div class="chart-card">
+        <h4>👑 Powerplay Kings (Bowlers)</h4>
+        <p class="chart-desc">Bowlers who dominate the first 6 overs with the best economy rates.</p>
+        <img src="charts/powerplay_kings.png" alt="Powerplay Kings" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION: SURPRISE INSIGHT -->
+  <section class="section" id="sec-surprise">
+    <div class="section-header">
+      <h2>💡 The One Insight That Surprised Me</h2>
+    </div>
+
+    <div class="surprise-card insight-card">
+      <div class="surprise-icon">🤯</div>
+      <h3>The Death Over Myth: It's Not Just About Batting</h3>
+      <p>
+        Going into this analysis, I expected the <strong>Powerplay</strong> to be the most decisive phase — set the tone early, dominate early, win the match. But the data told a completely different story.
+        <br><br>
+        The <strong>Death overs (overs 16–20)</strong> emerged as the single most impactful phase for determining match outcomes. But here's the real surprise: it's not just about death-overs <em>batting</em>.
+        <br><br>
+        <strong>Winning teams' bowlers take significantly more wickets per ball in the Death overs compared to losing teams.</strong> The difference in bowling wicket rate during Death overs is the largest gap across all phase comparisons. In other words, the ability to <em>take wickets at the death</em> — not just score runs — is what separates winners from losers.
+        <br><br>
+        This challenges the popular narrative that T20 is purely a "batters' game." The data proves that <strong>death-over bowling is the most underrated skill in IPL cricket</strong>, and teams that invest in specialist death bowlers have a measurable competitive advantage.
+      </p>
+      <img class="chart-img" src="charts/phase_wickets.png" alt="Death Over Bowling Insight" loading="lazy" style="margin-top: 1.5rem;">
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <p>IPL Crunch '26 — Built with Python, Pandas, Matplotlib, Seaborn & vanilla HTML/CSS/JS</p>
+    <p style="margin-top:0.5rem; color: var(--text-muted);">Data Source: Ball-by-ball IPL dataset (Cricsheet.org format) · 289,673 deliveries · 1,218 matches · Seasons 2007/08–2026</p>
+  </footer>
+
+  <script src="dashboard.js"></script>
+</body>
+</html>
